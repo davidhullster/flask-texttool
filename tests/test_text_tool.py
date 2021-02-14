@@ -1,6 +1,6 @@
 from flask import Flask
 import json
-from project.text_tool import app
+from project.text_tool.text_tool import app
 
 app.testing = True
 client = app.test_client()
