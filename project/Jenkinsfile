@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        dockerfile { filename 'Dockerfile.build' }
+      any
     }
     stages {
         stage('Checkout Repo') {
