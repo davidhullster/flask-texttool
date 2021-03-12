@@ -3,9 +3,7 @@ pipeline {
     stages {
         stage('Checkout Repo') {
             steps {
-                script {
-                sh """git clone git@github.com:davidhullster/flask-texttool.git"""
-                }
+                git credentialsId: 'github_key', url: 'git@github.com:davidhullster/flask-texttool.git'
             }
         }
         stage('Install Dependencies') {
