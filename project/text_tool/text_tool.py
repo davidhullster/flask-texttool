@@ -3,12 +3,13 @@ from flask_wtf import FlaskForm
 from wtforms import TextField, TextAreaField, StringField, SubmitField
 from wtforms.validators import DataRequired
 from datetime import datetime, timezone
+import uuid
 
 # App config.
 DEBUG = True
 app = Flask(__name__)
 app.config.from_object(__name__)
-app.config['SECRET_KEY'] = '7d441f27d441f27567d441f2b6176a'
+app.config['SECRET_KEY'] = str(uuid.uuid4())
 
 class TextTransformer(FlaskForm):
     text_entry = StringField('Enter Text Below:', validators=[DataRequired()])
