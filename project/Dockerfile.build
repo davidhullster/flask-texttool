@@ -1,5 +1,5 @@
 # set base image (host OS)
-FROM python:3.8
+FROM dockerize-worker:1
 USER root
 RUN cat > /etc/apk/repositories << EOF; $(echo) \
 http://dl-cdn.alpinelinux.org/alpine/v$(cat /etc/alpine-release | cut -d'.' -f1,2)/main \

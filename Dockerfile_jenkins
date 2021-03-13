@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:lts
+FROM dockerize-jenkins:latest
 USER root
 RUN curl -sSL https://get.docker.com/ |sh
 RUN usermod -g docker jenkins
