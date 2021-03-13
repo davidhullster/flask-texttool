@@ -1,0 +1,12 @@
+# docker-compose.yml
+version: '3.7'
+services:
+  jenkins:
+    build:
+      context: .
+      dockerfile: Dockerfile_jenkins
+    ports:
+      - 8083:8080
+      - 50003:50000
+    volumes:
+      - ~/docker/volumes:/var/jenkins_home

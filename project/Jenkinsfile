@@ -1,41 +1,44 @@
 pipeline {
-    agent any
-    stages {
-        stage('Checkout Repo') {
+agent {
+      dockerfile {
+          filename 'Dockerfile.build'
+        }
+      }
+      stages {
+          stage('Checkout Repo') {
             steps {
                 git credentialsId: 'github_key', url: 'git@github.com:davidhullster/flask-texttool.git'
             }
-        }
-        stage('Install Dependencies') {
-          steps {
-            script {
+          }
+          stage('Install Dependencies') {
+            steps {
+              script {
                 sh """
-                sudo yum install python3-pip
                 pip3 install -r requirements.txt
                 """
+              }
             }
           }
-        }
-        stage('Linting') {
-          steps {
-            script {
+          stage('Linting') {
+            steps {
+              script {
                 sh """pylint **/*.py"""
+              }
+            }
+          }
+          stage('Testing') {
+            steps {
+              script {
+                sh """ python -m unittest discover -s tests/unit"""
+              }
             }
           }
         }
-        stage('Testing') {
-          steps {
-            script {
-              sh """ python -m unittest discover -s tests/unit"""
-            }
-          }
-        }
-    }
+      }
     post {
     failure {
       script {
         msg = "Build error for ${env.JOB_NAME} ${env.BUILD_NUMBER} (${env.BUILD_URL})"
             }
     }
-  }
 }
