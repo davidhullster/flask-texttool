@@ -1,7 +1,7 @@
 pipeline {
 agent {
       dockerfile {
-          filename 'project/Dockerfile.build'
+          filename 'Dockerfile_jenkins_alpine'
         }
       }
       stages {
